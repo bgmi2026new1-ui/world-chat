@@ -302,12 +302,31 @@
     });
 
 
-    function login() {
+    async function login() {
 
-      alert(
-        "Login system abhi connect nahi hua hai. Backend next phase me add hoga."
-      );
+  const loginUser = document.getElementById("loginUser").value.trim();
+  const loginPassword = document.getElementById("loginPassword").value;
 
+  if (!loginUser || !loginPassword) {
+    alert("Please enter your email/username and password.");
+    return;
+  }
+
+  // Abhi login email se hoga.
+  // Username login profile system ke baad add karenge.
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: loginUser,
+    password: loginPassword
+  });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Login successful! Welcome to WorldChat 🌍");
+
+  window.location.href = "people.html";
     }
 
 
