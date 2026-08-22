@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorldChat — Account</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0b0d12;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .logo span {
+      color: #4f8cff;
+    }
+
+    .card {
+      background: #12151c;
+      border: 1px solid #242833;
+      border-radius: 20px;
+      padding: 30px;
+    }
+
+    .tabs {
+      display: flex;
+      background: #0b0d12;
+      border-radius: 12px;
+      padding: 5px;
+      margin-bottom: 28px;
+    }
+
+    .tab {
+      width: 50%;
+      padding: 12px;
+      border: none;
+      border-radius: 9px;
+      background: transparent;
+      color: #858a96;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .tab.active {
+      background: #4f8cff;
+      color: white;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #858a96;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      color: #c5c8d0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #30343e;
+      background: #0b0d12;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #4f8cff;
+    }
+
+    .main-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #4f8cff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #858a96;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #666b76;
+      margin-top: 15px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">
+      World<span>Chat</span> 🌍
+    </div>
+
+    <div class="card">
+
+      <div class="tabs">
+        <button class="tab active" id="loginTab">Log in</button>
+        <button class="tab" id="registerTab">Create account</button>
+      </div>
+
+      <!-- LOGIN -->
+
+      <div id="loginBox">
+
+        <h1>Welcome back</h1>
+
+        <p class="subtitle">
+          Sign in and continue your conversations.
+        </p>
+
+        <div class="field">
+          <label>Email or username</label>
+          <input
+            type="text"
+            id="loginUser"
+            placeholder="Enter email or @username"
+          >
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+          >
+        </div>
+
+        <button class="main-btn" onclick="login()">
+          Log in
+        </button>
+
+      </div>
+
+
+      <!-- REGISTER -->
+
+      <div id="registerBox" class="hidden">
+
+        <h1>Join WorldChat</h1>
+
+        <p class="subtitle">
+          Create your identity and start meeting people worldwide.
+        </p>
+
+        <div class="field">
+          <label>Display name</label>
+          <input
+            type="text"
+            id="displayName"
+            placeholder="Your name"
+          >
+        </div>
+
+        <div class="field">
+          <label>Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="@yourusername"
+          >
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="you@example.com"
+          >
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+          >
+        </div>
+
+        <button class="main-btn" onclick="register()">
+          Create account
+        </button>
+
+        <p class="note">
+          By creating an account, you agree to use WorldChat responsibly.
+        </p>
+
+      </div>
+
+      <a href="index.html" class="back">
+        ← Back to WorldChat
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+
+    const loginBox = document.getElementById("loginBox");
+    const registerBox = document.getElementById("registerBox");
+
+
+    loginTab.addEventListener("click", () => {
+
+      loginTab.classList.add("active");
+      registerTab.classList.remove("active");
+
+      loginBox.classList.remove("hidden");
+      registerBox.classList.add("hidden");
+
+    });
+
+
+    registerTab.addEventListener("click", () => {
+
+      registerTab.classList.add("active");
+      loginTab.classList.remove("active");
+
+      registerBox.classList.remove("hidden");
+      loginBox.classList.add("hidden");
+
+    });
+
+
+    function login() {
+
+      alert(
+        "Login system abhi connect nahi hua hai. Backend next phase me add hoga."
+      );
+
+    }
+
+
+    function register() {
+
+      alert(
+        "Account system abhi demo mode me hai. Real database next phase me connect hoga."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
